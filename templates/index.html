@@ -8,14 +8,24 @@
   </head>
   <body>
 
-    <div class="message_holder"></div>
+    <div class="message_holder">
+        {%for msg in messages%}
+          <li>{{msg}}</li>
+        {% endfor %}
+
+    </div>
+    
+     
 
     <form action="" method="POST">
       <h1 type="text" class="username" >{{username}}</h1>
-      <input type="text" class="message" placeholder="Message">
+      <input type="text" class="message" placeholder="Mensaje">
       <input type="submit">  
     </form>
-    
+    <a href="/logout">Cerrrar sesion.</a>
+
+
+
     <script type="text/javascript">
 
     var socket = io.connect('http://' + document.domain + ':' + location.port);
