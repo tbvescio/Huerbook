@@ -14,9 +14,9 @@ def home():
     if 'username' in session: #if there is an user logged in 
         
         #when the cliente requests the page get the messages
-        messages = get_messages()
+        users, messages = get_messages()
        
-        return render_template('index.html', username=session['username'], messages=messages)
+        return render_template('index.html', username=session['username'], messages=messages, users=users)
     else: #if not makes them logged in 
         return redirect('/login')
 
@@ -25,12 +25,13 @@ def recived_message(methods=['GET','POST']):
 
 
 
+
 @socketio.on('event_message') #happend when recives the event
 def handle_event(json, methods=['GET','POST']):
     print("event: " + str(json))
 
     #when receives the messages stores it in the db
-    save_messages(json['user_name'] + ":" + json['message'])
+    save_messages(json['user_name'] , json['message'])
 
     socketio.emit('response', json, callback=recived_message) #callback is debug method
 

@@ -10,7 +10,12 @@
 
     <div class="message_holder">
         {%for msg in messages%}
-          <li>{{msg}}</li>
+          {{msg}}
+        
+        {% endfor %}
+        {%for user in users%}
+          {{user}}<br>
+        
         {% endfor %}
 
     </div>
