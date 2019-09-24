@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_socketio import SocketIO
 from db import save_data, check_data, create_table, save_messages,get_messages
-import smtplib
+import smtplib, re
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'UBH6sOYUiF'
@@ -17,7 +17,7 @@ def home():
         #when the cliente requests the page get the messages
         users, messages = get_messages()
        
-        return render_template('index.html', username=session['username'], messages=messages, users=users)
+        return render_template('index.html', username=session['username'], messages=messages, users=users, logueados=logueados)
     else: #if not makes them logged in 
         return redirect('/login')
 
@@ -70,8 +70,9 @@ def registro():
 
         if email=="" or name=="" or user=="" or password=="": #if there is empty fields
             return render_template('register.html', error='Faltan datos!') 
-
-        if save_data(email,name,user,password) == False: #if the user is already register
+        elif check_email(email) == False: #if the mail is invalid
+            return render_template('register.html', error='Email invalido!') 
+        elif save_data(email,name,user,password) == False: #if the user is already register
             return render_template('register.html', error='Datos ya registrados!') 
         else: 
             send_mail(email,user)
@@ -84,8 +85,7 @@ def logout():
     logueados.remove(session['username'])
     print("Los usuarios son:" ,logueados)
     session.pop('username', None)
-    return redirect('/') 
-
+    return render_template('index.html', logueados=logueados) 
 
 
 def send_mail(mail,user):
@@ -98,6 +98,17 @@ def send_mail(mail,user):
     Gracias por registrarse en nuestra plataforma!
     """.format(user)
     server.sendmail("WasserSoft@gmail.com",mail,msg)
+
+
+def check_email(mail):
+    regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+
+    if(re.search(regex,mail)):  
+        print("Valid Email: ",mail)  
+        return True
+    else:
+        print("Invalid Email: ",mail) 
+        return False  
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
