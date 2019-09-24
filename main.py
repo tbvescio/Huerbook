@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_socketio import SocketIO
 from db import save_data, check_data, create_table, save_messages,get_messages
+import smtplib
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'UBH6sOYUiF'
@@ -70,9 +71,10 @@ def registro():
         if email=="" or name=="" or user=="" or password=="": #if there is empty fields
             return render_template('register.html', error='Faltan datos!') 
 
-        if save_data(email,name,user,password) == False:
+        if save_data(email,name,user,password) == False: #if the user is already register
             return render_template('register.html', error='Datos ya registrados!') 
-        else:
+        else: 
+            send_mail(email,user)
             return redirect('/login')
 
 
@@ -86,6 +88,16 @@ def logout():
 
 
 
+def send_mail(mail,user):
+    server = smtplib.SMTP('smtp.gmail.com',587)
+    server.starttls()
+    server.login("WasserSoft@gmail.com","huerbook")
+    msg= """From: WasserSoft
+    To: {}
+    Subject: Registro Exitoso!
+    Gracias por registrarse en nuestra plataforma!
+    """.format(user)
+    server.sendmail("WasserSoft@gmail.com",mail,msg)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
