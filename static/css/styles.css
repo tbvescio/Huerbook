@@ -3,7 +3,10 @@ body{
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(190,18,149,1) 0%, rgba(0,74,255,1) 99%);
     font-family: 'Roboto', sans-serif;
 }
-.login{
+
+
+
+.login, .register{
     background-color:white;
     color: black;
     width: 20em;
@@ -17,6 +20,8 @@ body{
     
 }
 
+
+/*    LOGIN     */
 .login input{
     margin: 1em;
     height: 2em;
@@ -35,4 +40,22 @@ body{
     text-decoration: none;
     color: #bdbdbd;
     margin: 50px;
+}
+
+
+/*   REGISTRO      */
+
+.register input{
+    margin: 1em;
+    height: 2em;
+}
+.register input[type=submit]{
+    width: 13em;
+    height: 2em;
+    background-color: #fc03df;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 100px;
 }

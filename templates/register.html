@@ -5,20 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
     
-    <form action="/registro" method="POST">
-        <div>
-            <input type="text" name="email" placeholder="Email">
-            <input type="text" name="name" placeholder="Name">
-            <input type="text" name="user" placeholder="Username">
-            <input type="text" name="password" placeholder="Password">
-        </div>
-        <input type="submit" value="Aceptar">
-    </form>
-
-    <h1>{{error}}</h1>
+    <div class="register">
+        <h1>Registro:</h1>
+        <form action="/registro" method="POST">
+            <div>
+                <input type="text" name="email" placeholder="Email">
+                <input type="text" name="name" placeholder="Nombre">
+                <input type="text" name="user" placeholder="Usuario">
+                <input type="text" name="password" placeholder="Contraseña">
+            </div>
+            <input type="submit" value="Aceptar">
+        </form>
+    
+        <h1>{{error}}</h1>
+    </div>
+    
 
 
 </body>
