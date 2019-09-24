@@ -35,7 +35,7 @@ def handle_event(json, methods=['GET','POST']):
 
     socketio.emit('response', json, callback=recived_message) #callback is debug method
 
-
+logueados = []
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -48,6 +48,10 @@ def login():
 
         if check_data(user, password) == True: #if data is correct
             session['username'] = user #saves the name of the user in the session
+            
+            logueados.append(user) 
+            print("Los usuarios son:",logueados)
+
             return redirect('/') #redirect to home page
         else:
             return render_template('login.html', error='Datos incorrectos!')        
@@ -75,6 +79,8 @@ def registro():
 @app.route('/logout')
 def logout():
     #close session and returns to home page
+    logueados.remove(session['username'])
+    print("Los usuarios son:" ,logueados)
     session.pop('username', None)
     return redirect('/') 
 
