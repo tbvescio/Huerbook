@@ -1,0 +1,38 @@
+body{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(190,18,149,1) 0%, rgba(0,74,255,1) 99%);
+    font-family: 'Roboto', sans-serif;
+}
+.login{
+    background-color:white;
+    color: black;
+    width: 20em;
+    height: 25em;
+    padding-top: 0.5em;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    
+}
+
+.login input{
+    margin: 1em;
+    height: 2em;
+}
+.login input[type=submit]{
+    width: 13em;
+    height: 2em;
+    background-color: #fc03df;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+.login a{
+    text-decoration: none;
+    color: #bdbdbd;
+    margin: 50px;
+}
