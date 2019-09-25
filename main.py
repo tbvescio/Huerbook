@@ -58,6 +58,8 @@ def login():
             print("Los usuarios son:",logueados)
 
             
+            socketio.emit('users', logueados)
+
             return redirect('/') #redirect to home page
         else:
             return render_template('login.html', error='Datos incorrectos!')        
@@ -91,6 +93,7 @@ def logout():
     logueados.remove(session['username'])
     print("Los usuarios son:" ,logueados)
     session.pop('username', None)
+    socketio.emit('users', logueados)
     return render_template('index.html', logueados=logueados) 
 
 
