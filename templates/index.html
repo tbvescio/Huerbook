@@ -27,6 +27,24 @@
   </div>
   <a href="/logout">Cerrrar sesion.</a>
 
+
+  <aside>
+    <div class="online_users">
+      *Usuarios conectados*
+    </div>
+  </aside>
+
+
+  <div id="margin">
+  <form action="" method="POST">
+    <p class="username" >{{username}}<p>
+    <input type="text" class="message" placeholder="Escribe un Mensaje">
+    <input type="submit" class="send_button">  
+  </form>
+  <center><a class="logout" href="/logout">Cerrar sesion.</a></center>
+</div>
+
+
   <script type="text/javascript">
 
     //Inicia socket en localhost:5000
@@ -37,7 +55,7 @@
       //Al hacer click en enviar mensaje
       var form = $('form').on('submit', function (e) {
         e.preventDefault()
-        let user_name = '{{username}}'
+        leser_name = '{{username}}'
         let user_input = $('input.message').val()
         //Si el mensaje no esta vacio
         if (user_input != "") {
@@ -63,7 +81,7 @@
     })
 
 
-
+t u
   </script>
 </body>
 
