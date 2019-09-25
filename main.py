@@ -47,12 +47,17 @@ def login():
         user = request.form['user'] 
         password = request.form['password']
 
+        if user in logueados: #if user is already logged
+            
+            return render_template('login.html', error='Usuario ya logeado!')
+
         if check_data(user, password) == True: #if data is correct
             session['username'] = user #saves the name of the user in the session
             
             logueados.append(user) 
             print("Los usuarios son:",logueados)
 
+            
             return redirect('/') #redirect to home page
         else:
             return render_template('login.html', error='Datos incorrectos!')        
@@ -67,6 +72,7 @@ def registro():
         name = request.form['name']
         user = request.form['user'] 
         password = request.form['password']
+        
 
         if email=="" or name=="" or user=="" or password=="": #if there is empty fields
             return render_template('register.html', error='Faltan datos!') 

@@ -15,7 +15,7 @@ def create_table():
 def save_data(email,name,username,password):
 	con = sqlite3.connect('users.db', check_same_thread=False)
 	elidart = con.cursor()
-	query = f"SELECT * FROM users WHERE email = '{email}' or user = '{username}'"
+	query = f"SELECT * FROM users WHERE email = '{email}' or user = '{username}'" #si ya hay usuario con esos datos
 	if elidart.execute(query).fetchall() == []: #si no hay resultados con esos parametros
 		query=  f"INSERT INTO users(email,name,user,password) values('{email}','{name}','{username}','{password}')"
 		elidart.execute(query)
