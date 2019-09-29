@@ -8,7 +8,7 @@ body{
     word-wrap: break-word;
     overflow:scroll;
     width:84%;
-    height:90%;
+    height:33em;
     background-color:#595555;
     border-radius: 9px;
     -moz-border-radius: 9px;
@@ -16,14 +16,14 @@ body{
     float:left;
 }
 
-.online_users{
+.logueados{
     background-color:white;
     width:15%;
-    height:90%;
+    height:33em;
     border-radius: 9px;
     -moz-border-radius: 9px;
     -webkit-border-radius: 9px;
-    border: 0px solid #000000;
+    border: 5px solid #000000;
     float:right;
 }
 

@@ -94,7 +94,7 @@ def logout():
     print("Los usuarios son:" ,logueados)
     session.pop('username', None)
     socketio.emit('users', logueados)
-    return render_template('index.html', logueados=logueados) 
+    return render_template('login.html', logueados=logueados) 
 
 
 def send_mail(mail,user):
