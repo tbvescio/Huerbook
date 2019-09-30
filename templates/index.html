@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body>
+<body id="indexbody">
 
   <div class="message_holder">
     {%for i in range(messages|length)%}
@@ -28,12 +28,12 @@
     </div>
   </aside>
 
-  <div id="margin">
+  <div>
     <form action="" method="POST">
       <input type="text" class="message" placeholder="Escribe un Mensaje">
-      <input type="submit" class="send_button">
+      <input type="button" class="send_button">
     </form>
-    <a class="logout" href="/logout">Cerrar sesion.</a>
+    <center><a class="logout" href="/logout">Cerrar sesion.</a></div></center>
   </div>
 
   <script type="text/javascript">

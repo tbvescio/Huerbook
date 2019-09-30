@@ -1,12 +1,20 @@
+
+
+
 body{
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(190,18,149,1) 0%, rgba(0,74,255,1) 99%);
     font-family: 'Roboto', sans-serif;
 }
 
+#indexbody{
+     background-image: linear-gradient(90deg, #0a2a5a, #00487c, #00637b, #007a55, #138c00);
+}
+
+
 .message_holder{
     word-wrap: break-word;
-    overflow:scroll;
+    overflow-y:scroll;
     width:84%;
     height:33em;
     background-color:#595555;
@@ -17,13 +25,12 @@ body{
 }
 
 .logueados{
-    background-color:white;
-    width:15%;
-    height:33em;
-    border-radius: 9px;
-    -moz-border-radius: 9px;
-    -webkit-border-radius: 9px;
-    border: 5px solid #000000;
+    background-color:#02209c;
+    color:white;
+    width:12%;
+    height:31em;
+    border-radius: 25px;
+    padding: 20px; 
     float:right;
 }
 
@@ -32,13 +39,14 @@ body{
 }
 
 .message{
-    width:95%;
-    height:25px;
+    width:94%;
+    height:33px;
 }
 
 .send_button{
-    width:57px;
-    height: 34px;
+    width:43px;
+    height: 33px;
+    margin-top: 5px;
 }
 
 .login, .register{
