@@ -1,12 +1,15 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_socketio import SocketIO
-from db import save_data, check_data, create_table, save_messages,get_messages
-import smtplib, re
+from db import *
+import smtplib, re, hashlib
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'UBH6sOYUiF'
 socketio = SocketIO(app) #capsule flask app in socket
 
+
+old_pass = ""
+new_pass = ""
 
 create_table()
 
@@ -97,6 +100,25 @@ def logout():
     return render_template('login.html', logueados=logueados) 
 
 
+
+@app.route('/reset', methods = ['POST','GET'])
+def reset_password():
+    global old_pass, new_pass
+    if request.method == 'POST':
+        old_pass = request.form['old_pass']
+        new_pass = request.form['new_pass']
+    if check_old_pass(old_pass,session['username']) == False:
+        error = "Contraseña incorrecta"
+    else:
+        save_new_pass(new_pass,session['username'])
+        session.pop('username', None)
+        return redirect('/login')
+
+    return render_template('reset_password.html', error = error)
+
+    
+
+
 def send_mail(mail,user):
     server = smtplib.SMTP('smtp.gmail.com',587)
     server.starttls()
@@ -113,7 +135,7 @@ def check_email(mail):
     regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
 
     if(re.search(regex,mail)):  
-        print("Valid Email: ",mail)  
+        print("Valid Email: ",mail)     
         return True
     else:
         print("Invalid Email: ",mail) 

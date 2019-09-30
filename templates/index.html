@@ -6,7 +6,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
@@ -15,29 +14,79 @@
 
   <div class="message_holder">
     {%for i in range(messages|length)%}
-    <p><b>{{messages[i]}}:</b> {{users[i]}}</p>
+    <p><b>{{messages[i]}}:</b> {{users[i]}}<br></p>
     {% endfor %}
   </div>
-
+    
   <aside>
+    <p>*Usuarios conectados*</p>
     <div class="logueados">
-      <p>*Usuarios conectados*</p>
-      {%for i in range(logueados|length)%}
-      <p>{{logueados[i]}}</p>
-      {% endfor %}
+        {%for i in range(logueados|length)%}
+        <p><b>{{logueados[i]}}</b></p>
+        {% endfor %}
     </div>
   </aside>
+  
 
   <div id="margin">
-    <form action="" method="POST">
-      <input type="text" class="message" placeholder="Escribe un Mensaje">
-      <input type="submit" class="send_button">
-    </form>
-    <a class="logout" href="/logout">Cerrar sesion.</a>
-  </div>
+  <form action="" method="POST">
+    <input type="text" class="message" placeholder="Escribe un Mensaje">
+    <input type="submit" class="send_button">  
+  </form>
+  <a class="logout" href="/logout">Cerrar sesion.</a>
+</div>
+
 
   <script type="text/javascript">
-    var nombre = '{{username}}'
+
+    //Inicia socket en localhost:5000
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    //Cuando un usuario se conecta
+    socket.on('connect', function () {
+
+      $('div.message_holder').scrollTop(100000)
+
+      //Al hacer click en enviar mensaje
+      var form = $('form').on('submit', function (e) {
+
+        e.preventDefault()
+        let user_name = '{{username}}'
+        let user_input = $('input.message').val()
+
+        //Si el mensaje no esta vacio
+        if (user_input != "") {
+
+          //Envia nombre de usuario y mensaje al servidor
+          socket.emit('event_message', {
+            user_name: user_name, message: user_input
+          })
+        }
+        //Limpia el input del mensaje
+        $('input.message').val('').focus()
+      })
+    })  
+
+    //Imprime el mensaje enviado
+    socket.on('response', function (msg) {
+
+      $('div.message_holder').append('<p><b>' + msg.user_name + ':</b> ' + msg.message + '<br></p>')
+
+      //Scrolea hasta el final
+      $('div.message_holder').scrollTop(100000)
+    })
+
+    //Cuando un usuario se conecta o desconecta actualiza la lista de usuarios conectadps
+    socket.on('users', function (log) {
+
+      //Vacia la lista logueados
+      $('div.logueados').empty()
+
+      //Por cada item en la lista
+      $.each(log,function(){
+        $('div.logueados').append('<p><b>'+this+'</b></p>')
+      })
+    })
   </script>
 </body>
 
