@@ -24,6 +24,14 @@ body{
     float:left;
 }
 
+
+
+.asd{
+    top:378px;
+    left:105px;
+    position: absolute;
+}
+
 .logueados{
     background-color:#02209c;
     color:white;
