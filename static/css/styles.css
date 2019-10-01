@@ -1,30 +1,54 @@
-
-
-
-body{
+/* BODY FOR LOGIN AND REGISTER*/
+#login, #register{
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(190,18,149,1) 0%, rgba(0,74,255,1) 99%);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
+
+/*      INDEX       */
 #indexbody{
-     background-image: linear-gradient(90deg, #0a2a5a, #00487c, #00637b, #007a55, #138c00);
+    background-color: #26262B;
+    color: white;
+    font-family: 'Lato', sans-serif;
 }
 
 
 .message_holder{
-    word-wrap: break-word;
-    overflow-y:scroll;
     width:84%;
-    height:33em;
-    background-color:#595555;
+    height:35em;
+    background-color: #2d2d33; 
     border-radius: 9px;
     -moz-border-radius: 9px;
     -webkit-border-radius: 9px;
     float:left;
+    font-size: 17px;
+    word-wrap: break-word;
+    overflow-y:scroll;
 }
 
+  
+.message_holder input{
+    
+    background-color: #34343b;
+    color: white;
+    border-color:#83838f;
+    border-width: 2px;
+    border-style: solid;
+    
+}
 
+.logueados p{
+    border-width: 2px;
+    border-color: red;
+    border-style: dashed;
+    padding: 5px;
+}
+
+.input_message{
+    display: inline;
+    
+}
 
 .asd{
     top:378px;
@@ -40,6 +64,7 @@ body{
     border-radius: 25px;
     padding: 20px; 
     float:right;
+
 }
 
 #margin{
@@ -56,6 +81,9 @@ body{
     height: 33px;
     margin-top: 5px;
 }
+
+
+
 
 .login, .register{
     background-color:white;
@@ -109,4 +137,8 @@ body{
     border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 100px;
+}
+
+.mensajes{
+    margin-left: 15px;
 }

@@ -30,7 +30,7 @@ socket.on('connect', function () {
 //Imprime el mensaje enviado
 socket.on('response', function (msg) {
 
-    $('div.message_holder').append('<p><b>' + msg.user_name + ':</b> ' + msg.message + '<br></p>')
+    $('div.mensajes').append('<p><b>' + msg.user_name + ':</b> ' + msg.message + '<br></p>')
 
     //Scrolea hasta el final
     $('div.message_holder').scrollTop(100000)

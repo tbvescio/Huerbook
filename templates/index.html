@@ -7,17 +7,27 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body id="indexbody">
 
   <div class="message_holder">
-    {%for i in range(messages|length)%}
-    <p><b>{{messages[i]}}:</b> {{users[i]}}</p>
-    {% endfor %}
+    <div class="mensajes">
+        {%for i in range(messages|length)%}
+        <p><b>{{messages[i]}}:</b> {{users[i]}}</p>
+        {% endfor %}
+    </div>
+    <div class="input_message">
+        <form action="" method="POST">
+          <input type="text" class="message" placeholder="Escribe un Mensaje">
+          
+        </form>
+        
+      </div>
   </div>
+  
 
   <aside>
     <div class="logueados">
@@ -25,16 +35,12 @@
       {%for i in range(logueados|length)%}
       <p>{{logueados[i]}}</p>
       {% endfor %}
+    
+      <center><a class="logout" href="/logout">Cerrar sesion.</a></div></center>
     </div>
   </aside>
 
-  <div>
-    <form action="" method="POST">
-      <input type="text" class="message" placeholder="Escribe un Mensaje">
-      <input type="button" class="send_button">
-    </form>
-    <center><a class="logout" href="/logout">Cerrar sesion.</a></div></center>
-  </div>
+  
 
   <script type="text/javascript">
     var nombre = '{{username}}'
