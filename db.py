@@ -1,7 +1,6 @@
 import sqlite3
 
-con = sqlite3.connect('users.db', check_same_thread=False)
-elidart = con.cursor()
+
 
 def create_table():
 	con = sqlite3.connect('users.db', check_same_thread=False)
@@ -27,6 +26,7 @@ def save_data(email,name,username,password):
 
 def get_messages():
 	con = sqlite3.connect('users.db', check_same_thread=False)
+	elidart = con.cursor()	
 	query = elidart.execute("SELECT * FROM messages").fetchall() #obtiene todos los registros
 	
 	users = []
@@ -61,3 +61,23 @@ def check_data(username,password):
 	else:
 		return True
 
+def check_old_pass(old_pass,username):
+	con = sqlite3.connect('users.db', check_same_thread = False)
+	elidart = con.cursor()
+	query = f"select password from users where user = '{username}' and password = '{old_pass}'"
+	result = elidart.execute(query).fetchall()
+	con.commit()
+	con.close()
+	if result == []:
+		return False
+	else: 
+		return True
+
+def save_new_pass(new,username):
+	con = sqlite3.connect('users.db', check_same_thread = False)
+	elidart = con.cursor()
+	query = f"update users set password = '{new}' where user = '{username}'"
+	elidart.execute(query)
+	con.commit()
+	con.close()
+	return 

@@ -30,6 +30,7 @@
   
 
   <aside>
+    <p>*Usuarios conectados*</p>
     <div class="logueados">
       <p>*Usuarios conectados*</p>
       {%for i in range(logueados|length)%}
@@ -39,12 +40,22 @@
       <center><a class="logout" href="/logout">Cerrar sesion.</a></div></center>
     </div>
   </aside>
-
   
 
-  <script type="text/javascript">
-    var nombre = '{{username}}'
-  </script>
+  <div id="margin">
+  <form action="" method="POST">
+    <input type="text" class="message" placeholder="Escribe un Mensaje">
+    <input type="submit" class="send_button">  
+  </form>
+  <a class="logout" href="/logout">Cerrar sesion.</a>
+</div>
+
+<script type="text/javascript">
+  var nombre = '{{username}}'
+</script>
+
+
+  
 </body>
 
 </html>
