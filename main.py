@@ -8,11 +8,6 @@ app.config['SECRET_KEY'] = 'UBH6sOYUiF'
 socketio = SocketIO(app) #capsule flask app in socket
 
 
-old_pass = ""
-new_pass = ""
-
-create_table()
-
 @app.route('/' ,methods=['GET','POST'])
 def home():
     if 'username' in session: #if there is an user logged in 
@@ -29,7 +24,6 @@ def recived_message(methods=['GET','POST']):
 
 
 
-
 @socketio.on('event_message') #happend when recives the event
 def handle_event(json, methods=['GET','POST']):
     print("event: " + str(json))
@@ -39,7 +33,8 @@ def handle_event(json, methods=['GET','POST']):
 
     socketio.emit('response', json, callback=recived_message) #callback is debug method
 
-logueados = []
+
+
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -48,7 +43,9 @@ def login():
     else:
         #extract data from the form
         user = request.form['user'] 
+
         password = request.form['password']
+        password = to_hash(password) #makes hash of password
 
         if user in logueados: #if user is already logged
             print("user loggeed")
@@ -57,11 +54,10 @@ def login():
         if check_data(user, password) == True: #if data is correct
             session['username'] = user #saves the name of the user in the session
             
-            logueados.append(user) 
+            logueados.append(user) #adds user to list of users connected
             print("Los usuarios son:",logueados)
 
-            
-            socketio.emit('users', logueados)
+            socketio.emit('users', logueados) #sends users connected to client
 
             return redirect('/') #redirect to home page
         else:
@@ -76,8 +72,9 @@ def registro():
         email = request.form['email']
         name = request.form['name']
         user = request.form['user'] 
-        password = request.form['password']
         
+        password = request.form['password']
+        password = to_hash(password) #makes hash of password
 
         if email=="" or name=="" or user=="" or password=="": #if there is empty fields
             return render_template('register.html', error='Faltan datos!') 
@@ -95,9 +92,9 @@ def logout():
     #close session and returns to home page
     logueados.remove(session['username'])
     print("Los usuarios son:" ,logueados)
-    session.pop('username', None)
-    socketio.emit('users', logueados)
-    return render_template('login.html', logueados=logueados) 
+    session.pop('username', None) #close session    
+    socketio.emit('users', logueados) #event where sends connected users
+    return redirect('/')
 
 
 
@@ -107,37 +104,43 @@ def reset_password():
         return render_template('reset_password.html')
     else:
         
-        old_pass = request.form['old_pass']
-        new_pass = request.form['new_pass']
+        old_pass = to_hash(request.form['old_pass'])
+        new_pass = to_hash(request.form['new_pass'])
         email = request.form['email']
-        if check_old_pass(old_pass,email) == False:
+
+        if check_old_pass(old_pass,email) == False: #if there isnt result 
             return render_template('reset_password.html', error = "Contraseña incorrecta")
-        else:
-            save_new_pass(new_pass,email)
+        else: #if there is an user registered
+            save_new_pass(new_pass,email) #saves the new password
             session.pop('username', None)
             return redirect('/login')
 
     
 
-    
+def to_hash(password):
+    password = hashlib.sha224(password.encode()) #make hash with sha224 with data encoded   
+    password = password.hexdigest() #convert to hexadecimal
+
+    return password
+
 
 
 def send_mail(mail,user):
     server = smtplib.SMTP('smtp.gmail.com',587)
-    server.starttls()
-    server.login("WasserSoft@gmail.com","huerbook")
+    server.starttls() #start server
+    server.login("WasserSoft@gmail.com","huerbook") #login
     msg= """From: WasserSoft
     To: {}
     Subject: Registro Exitoso!
     Gracias por registrarse en nuestra plataforma!
     """.format(user)
-    server.sendmail("WasserSoft@gmail.com",mail,msg)
+    server.sendmail("WasserSoft@gmail.com",mail,msg) 
 
 
 def check_email(mail):
     regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
 
-    if(re.search(regex,mail)):  
+    if(re.search(regex,mail)): #if 'mail' contains 'regex' 
         print("Valid Email: ",mail)     
         return True
     else:
@@ -145,4 +148,6 @@ def check_email(mail):
         return False  
 
 if __name__ == '__main__':
+    logueados = []
+    create_table()
     socketio.run(app, debug=True)
