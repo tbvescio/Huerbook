@@ -51,8 +51,8 @@ def login():
         password = request.form['password']
 
         if user in logueados: #if user is already logged
-            
-            return render_template('login.html', error='Usuario ya logeado!')
+            print("user loggeed")
+            return redirect('/')
 
         if check_data(user, password) == True: #if data is correct
             session['username'] = user #saves the name of the user in the session
