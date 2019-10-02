@@ -13,7 +13,7 @@ new_pass = ""
 
 create_table()
 
-@app.route('/')
+@app.route('/' ,methods=['GET','POST'])
 def home():
     if 'username' in session: #if there is an user logged in 
         

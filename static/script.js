@@ -11,9 +11,8 @@ socket.on('connect', function () {
 
         e.preventDefault()
 
-        let user_name = nombre
-        let user_input = $('input.message').val()
-
+        var user_name = nombre
+        var user_input = $('input.message').val()
         //Si el mensaje no esta vacio
         if (user_input != "") {
 
@@ -40,10 +39,10 @@ socket.on('response', function (msg) {
 socket.on('users', function (log) {
 
     //Vacia la lista logueados
-    $('div.logueados').empty()
+    $('div.usuarios').empty()
 
     //Por cada item en la lista
     $.each(log, function () {
-        $('div.logueados').append('<p><b>' + this + '</b></p>')
+        $('div.usuarios').append('<p><b>' + this + '</b></p>')
     })
 })

@@ -22,22 +22,21 @@
     <div class="input_message">
         <form action="" method="POST">
           <input type="text" class="message" placeholder="Escribe un Mensaje">
-          
+          <input type="file" class="archivo">
         </form>
-        
       </div>
   </div>
   
 
   <aside>
-    <p>*Usuarios conectados*</p>
     <div class="logueados">
-      <p>*Usuarios conectados*</p>
+      <p id="usucon">*Usuarios conectados*</p>
+      <div class="usuarios">
       {%for i in range(logueados|length)%}
       <p>{{logueados[i]}}</p>
       {% endfor %}
-    
-      <center><a class="logout" href="/logout">Cerrar sesion.</a></div></center>
+    </div>
+      <a class="logout" href="/logout">Cerrar sesion.</a></div>
     </div>
   </aside>
   
