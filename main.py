@@ -103,18 +103,21 @@ def logout():
 
 @app.route('/reset', methods = ['POST','GET'])
 def reset_password():
-    global old_pass, new_pass
-    if request.method == 'POST':
+    if request.method == 'GET':
+        return render_template('reset_password.html')
+    else:
+        
         old_pass = request.form['old_pass']
         new_pass = request.form['new_pass']
-    if check_old_pass(old_pass,session['username']) == False:
-        error = "Contraseña incorrecta"
-    else:
-        save_new_pass(new_pass,session['username'])
-        session.pop('username', None)
-        return redirect('/login')
+        email = request.form['email']
+        if check_old_pass(old_pass,email) == False:
+            return render_template('reset_password.html', error = "Contraseña incorrecta")
+        else:
+            save_new_pass(new_pass,email)
+            session.pop('username', None)
+            return redirect('/login')
 
-    return render_template('reset_password.html', error = error)
+    
 
     
 

@@ -61,10 +61,10 @@ def check_data(username,password):
 	else:
 		return True
 
-def check_old_pass(old_pass,username):
+def check_old_pass(old_pass,email):
 	con = sqlite3.connect('users.db', check_same_thread = False)
 	elidart = con.cursor()
-	query = f"select password from users where user = '{username}' and password = '{old_pass}'"
+	query = f"select password from users where email = '{email}' and password = '{old_pass}'"
 	result = elidart.execute(query).fetchall()
 	con.commit()
 	con.close()
@@ -73,10 +73,10 @@ def check_old_pass(old_pass,username):
 	else: 
 		return True
 
-def save_new_pass(new,username):
+def save_new_pass(new,email):
 	con = sqlite3.connect('users.db', check_same_thread = False)
 	elidart = con.cursor()
-	query = f"update users set password = '{new}' where user = '{username}'"
+	query = f"update users set password = '{new}' where email = '{email}'"
 	elidart.execute(query)
 	con.commit()
 	con.close()

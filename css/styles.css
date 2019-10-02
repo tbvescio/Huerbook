@@ -1,0 +1,175 @@
+/* BODY FOR LOGIN, REGISTER AND RESET*/
+#login, #register, #reset{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(190,18,149,1) 0%, rgba(0,74,255,1) 99%);
+    font-family: 'Lato', sans-serif;
+}
+
+
+/*      INDEX       */
+#indexbody{
+    background-color: #26262B;
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+
+
+.message_holder{
+    width:84%;
+    height:35em;
+    background-color: #2d2d33; 
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    float:left;
+    font-size: 17px;
+    word-wrap: break-word;
+    overflow-y:scroll;
+}
+
+  
+.message_holder input{
+    
+    background-color: #34343b;
+    color: white;
+    border-color:#83838f;
+    border-width: 2px;
+    border-style: solid;
+    
+}
+
+.logueados p{
+    border-width: 2px;
+    border-color: red;
+    border-style: dashed;
+    padding: 5px;
+}
+
+.input_message{
+    display: inline;
+    
+}
+
+.asd{
+    top:378px;
+    left:105px;
+    position: absolute;
+}
+
+.logueados{
+    background-color:#02209c;
+    color:white;
+    width:12%;
+    height:31em;
+    border-radius: 25px;
+    padding: 20px; 
+    float:right;
+
+}
+
+#margin{
+    margin-top:2em;
+}
+
+.message{
+    width:94%;
+    height:33px;
+}
+
+.send_button{
+    width:43px;
+    height: 33px;
+    margin-top: 5px;
+}
+
+
+
+
+.login, .register, .reset{
+    background-color:white;
+    color: black;
+    width: 20em;
+    height: 25em;
+    padding-top: 0.5em;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    
+}
+
+
+/*    LOGIN     */
+.login input{
+    margin: 1em;
+    height: 2em;
+}
+.login input[type=submit]{
+    width: 13em;
+    height: 2em;
+    background-color: #fc03df;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 75px;
+}
+.login a{
+    text-decoration: none;
+    color: #bdbdbd;
+
+}
+
+
+/*   REGISTRO      */
+
+.register input{
+    margin: 1em;
+    height: 2em;
+}
+.register input[type=submit]{
+    width: 13em;
+    height: 2em;
+    background-color: #fc03df;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.mensajes{
+    margin-left: 15px;
+}
+.register a{
+    text-decoration: none;
+    color: #bdbdbd;
+}
+
+/* RESET */
+.reset input{
+    margin: 1em;
+    height: 2em;
+}
+.reset input[type=submit]{
+    width: 13em;
+    height: 2em;
+    background-color: #fc03df;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+.reset a{
+    text-decoration: none;
+    color: #bdbdbd;
+    margin: 50px;
+    top:320px;
+    left:61px;
+    position: absolute;
+
+}
+
+    
