@@ -6,13 +6,14 @@ socket.on('connect', function () {
 
     $('div.message_holder').scrollTop(100000)
 
-    //Al hacer click en enviar mensaje
+    //Al hacer clkic en enviar mensaje
     $('form').on('submit', function (e) {
 
         e.preventDefault()
 
         var user_name = nombre
         var user_input = $('input.message').val()
+
         //Si el mensaje no esta vacio
         if (user_input != "") {
 
@@ -29,7 +30,8 @@ socket.on('connect', function () {
 //Imprime el mensaje enviado
 socket.on('response', function (msg) {
 
-    $('div.mensajes').append('<p><b>' + msg.user_name + ':</b> ' + msg.message + '<br></p>')
+    $('div.mensajes').append('<hr>')
+    $('div.mensajes').append('<p><b>' + msg.user_name + ':</b><br>' + msg.message + '<br></p>')
 
     //Scrolea hasta el final
     $('div.message_holder').scrollTop(100000)

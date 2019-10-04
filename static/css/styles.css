@@ -8,15 +8,18 @@
 
 /*      INDEX       */
 #indexbody{
-    background-color: #26262B;
+    /* b    ackground-color: #26262B; */
     color: white;
     font-family: 'Lato', sans-serif;
+
+    background: rgb(0,212,255);
+background: linear-gradient(90deg, rgba(0,212,255,1) 8%, rgba(57,57,179,1) 87%, rgba(73,67,182,1) 100%);
 }
 
 
 .message_holder{
     width:84%;
-    height:35em;
+    height:55em;
     background-color: #2d2d33; 
     border-radius: 9px;
     -moz-border-radius: 9px;
@@ -25,8 +28,14 @@
     font-size: 17px;
     word-wrap: break-word;
     overflow-y:scroll;
+
+    opacity: 0.9;
+   
 }
 
+.mensajes p b{
+    display: inline-block;
+}
   
 .message_holder input{
     
@@ -40,9 +49,13 @@
 
 .logueados p{
     border-width: 2px;
-    border-color: red;
-    border-style: dashed;
     padding: 5px;
+    font-size: 20px;
+}
+
+.logueados p:hover{
+    border-color: grey;
+    border-style: solid;
 }
 
 .input_message{
@@ -57,14 +70,14 @@
 }
 
 .logueados{
-    background-color:#02209c;
+    background-color: #2d2d33; 
     color:white;
     width:12%;
     height:31em;
     border-radius: 25px;
     padding: 20px; 
     float:right;
-
+    opacity: 0.8;
 }
 
 #margin{
@@ -74,6 +87,7 @@
 .message{
     width:94%;
     height:33px;
+    padding-right: 10px;
 }
 
 .send_button{
@@ -84,8 +98,11 @@
 
 .logout{
     color: white;
+    
 
 }
+
+
 
 
 

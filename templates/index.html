@@ -15,40 +15,46 @@
 
   <div class="message_holder">
     <div class="mensajes">
-        {%for i in range(messages|length)%}
-        <p><b>{{messages[i]}}:</b> {{users[i]}}</p>
-        {% endfor %}
+      {%for i in range(messages|length)%}
+      <hr>
+      <p><b>{{messages[i]}}:</b><br> {{users[i]}}</p>
+      {% endfor %}
     </div>
     <div class="input_message">
-        <form action="" method="POST">
-          <input type="text" class="message" placeholder="Escribe un Mensaje">
-          <input type="file" class="archivo">
-        </form>
-      </div>
+      <form action="" method="POST">
+        <input type="text" class="message" placeholder="Escribe un Mensaje"
+          style="padding-left: 10px;margin-left: 15px;">
+        <input type="file" class="archivo">
+      </form>
+    </div>
   </div>
-  
+
 
   <aside>
     <div class="logueados">
-      <p id="usucon">*Usuarios conectados*</p>
+
+      <h1>Usuarios conectados</h1>
+
       <div class="usuarios">
-      {%for i in range(logueados|length)%}
-      <p>{{logueados[i]}}</p>
-      {% endfor %}
-    </div>
-      <a class="logout" href="/logout">Cerrar sesion.</a></div>
+        {%for i in range(logueados|length)%}
+        <p>{{logueados[i]}}</p>
+        {% endfor %}
+      </div>
+
+      <a class="logout" href="/logout">Cerrar sesion.</a>
+
     </div>
   </aside>
-  
 
 
 
-<script type="text/javascript">
-  var nombre = '{{username}}'
-</script>
+
+  <script type="text/javascript">
+    var nombre = '{{username}}'
+  </script>
 
 
-  
+
 </body>
 
 </html>
