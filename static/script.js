@@ -4,7 +4,7 @@ var socket = io.connect('http://' + document.domain + ':' + location.port);
 //Cuando un usuario se conecta
 socket.on('connect', function () {
 
-    $('div.message_holder').scrollTop(100000)
+    $('div.mensajes').scrollTop(100000)
 
     //Al hacer clkic en enviar mensaje
     $('form').on('submit', function (e) {
@@ -31,10 +31,10 @@ socket.on('connect', function () {
 socket.on('response', function (msg) {
 
     $('div.mensajes').append('<hr>')
-    $('div.mensajes').append('<p><b>' + msg.user_name + ':</b><br>' + msg.message + '<br></p>')
+    $('div.mensajes').append('<p><b>' + msg.user_name + ':</b><br>' + msg.message + '</p>')
 
     //Scrolea hasta el final
-    $('div.message_holder').scrollTop(100000)
+    $('div.mensajes').scrollTop(100000)
 })
 
 //Cuando un usuario se conecta o desconecta actualiza la lista de usuarios conectadps

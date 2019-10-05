@@ -3,35 +3,28 @@
 
 <head>
   <title>Huerbook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body id="indexbody">
+  <div class="row maindiv">
 
-  <div class="message_holder">
-    <div class="mensajes">
+    <div class="col-8 mensajes">
       {%for i in range(messages|length)%}
-      <hr>
       <p><b>{{messages[i]}}:</b><br> {{users[i]}}</p>
       {% endfor %}
     </div>
-    <div class="input_message">
-      <form action="" method="POST">
-        <input type="text" class="message" placeholder="Escribe un Mensaje"
-          style="padding-left: 10px;margin-left: 15px;">
-        <input type="file" class="archivo">
-      </form>
-    </div>
-  </div>
 
-
-  <aside>
-    <div class="logueados">
+    <div class="logueados col-3">
 
       <h1>Usuarios conectados</h1>
 
@@ -44,7 +37,15 @@
       <a class="logout" href="/logout">Cerrar sesion.</a>
 
     </div>
-  </aside>
+  </div>
+  <div class="row">
+    <div class="col-8 input_message">
+      <form action="" method="POST">
+        <input type="text" class="message" placeholder="Escribe un Mensaje">
+        <input type="submit" class="send_button">
+      </form>
+    </div>
+  </div>
 
 
 
@@ -54,7 +55,15 @@
   </script>
 
 
-
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

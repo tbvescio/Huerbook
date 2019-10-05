@@ -1,66 +1,47 @@
-/* BODY FOR LOGIN AND REGISTER*/
-#login, #register{
+/* BODY FOR LOGIN, REGISTER AND RESET*/
+#login, #register, #reset{
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(190,18,149,1) 0%, rgba(0,74,255,1) 99%);
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 
 /*      INDEX       */
 #indexbody{
-    /* b    ackground-color: #26262B; */
+    background-color: rgb(26, 26, 26);
     color: white;
-    font-family: 'Lato', sans-serif;
-
-    background: rgb(0,212,255);
-background: linear-gradient(90deg, rgba(0,212,255,1) 8%, rgba(57,57,179,1) 87%, rgba(73,67,182,1) 100%);
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
 }
 
-
-.message_holder{
-    width:84%;
-    height:55em;
+.maindiv{
+    margin:20px 0px 10px 10px;
+    
+}
+.mensajes{
     background-color: #2d2d33; 
     border-radius: 9px;
     -moz-border-radius: 9px;
     -webkit-border-radius: 9px;
-    float:left;
     font-size: 17px;
     word-wrap: break-word;
     overflow-y:scroll;
-
-    opacity: 0.9;
-   
+    height:90vh;
 }
 
-.mensajes p b{
-    display: inline-block;
-}
   
-.message_holder input{
-    
+.input_message{
+    margin-left:20px;
     background-color: #34343b;
     color: white;
-    border-color:#83838f;
-    border-width: 2px;
-    border-style: solid;
     
 }
 
 .logueados p{
     border-width: 2px;
+    border-color: red;
+    border-style: dashed;
     padding: 5px;
-    font-size: 20px;
-}
-
-.logueados p:hover{
-    border-color: grey;
-    border-style: solid;
-}
-
-.input_message{
-    display: inline;
-    
 }
 
 .asd{
@@ -70,44 +51,29 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 8%, rgba(57,57,179,1) 87%, 
 }
 
 .logueados{
-    background-color: #2d2d33; 
+    background-color:#02209c;
     color:white;
-    width:12%;
-    height:31em;
     border-radius: 25px;
     padding: 20px; 
-    float:right;
-    opacity: 0.8;
-}
-
-#margin{
-    margin-top:2em;
+    margin-left:20px;
+    height:90vh;
 }
 
 .message{
-    width:94%;
-    height:33px;
-    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 15px;
+    border-radius:12px;
 }
-
 .send_button{
     width:43px;
     height: 33px;
     margin-top: 5px;
 }
 
-.logout{
-    color: white;
-    
-
-}
 
 
 
-
-
-
-.login, .register{
+.login, .register, .reset{
     background-color:white;
     color: black;
     width: 20em;
@@ -135,12 +101,12 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 8%, rgba(57,57,179,1) 87%, 
     border: 0;
     border-radius: 5px;
     margin-top: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 75px;
 }
 .login a{
     text-decoration: none;
     color: #bdbdbd;
-    margin: 50px;
+
 }
 
 
@@ -164,3 +130,34 @@ background: linear-gradient(90deg, rgba(0,212,255,1) 8%, rgba(57,57,179,1) 87%, 
 .mensajes{
     margin-left: 15px;
 }
+.register a{
+    text-decoration: none;
+    color: #bdbdbd;
+}
+
+/* RESET */
+.reset input{
+    margin: 1em;
+    height: 2em;
+}
+.reset input[type=submit]{
+    width: 13em;
+    height: 2em;
+    background-color: #fc03df;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+.reset a{
+    text-decoration: none;
+    color: #bdbdbd;
+    margin: 50px;
+    top:320px;
+    left:61px;
+    position: absolute;
+
+}
+
+    
