@@ -30,7 +30,7 @@ socket.on('connect', function () {
 //Imprime el mensaje enviado
 socket.on('response', function (msg) {
 
-    $('div.mensajes').append('<hr>')
+    $('div.mensajes').append('<hr class="linea">')
     $('div.mensajes').append('<p><b>' + msg.user_name + ':</b><br>' + msg.message + '</p>')
 
     //Scrolea hasta el final
@@ -45,6 +45,6 @@ socket.on('users', function (log) {
 
     //Por cada item en la lista
     $.each(log, function () {
-        $('div.usuarios').append('<p><b>' + this + '</b></p>')
+        $('div.usuarios').append('<p class="logged_user">' + this + '</p>')
     })
 })

@@ -18,28 +18,29 @@
 <body id="indexbody">
   <div class="row maindiv">
 
-    <div class="col-8 mensajes">
+    <div class="col-10 mensajes">
       {%for i in range(messages|length)%}
+      <hr class="linea">
       <p><b>{{messages[i]}}:</b><br> {{users[i]}}</p>
       {% endfor %}
     </div>
 
-    <div class="logueados col-3">
+    <div class="logueados col-2">
 
-      <h1>Usuarios conectados</h1>
+      <h1 id="usuarioscon">Usuarios conectados</h1>
 
       <div class="usuarios">
         {%for i in range(logueados|length)%}
-        <p>{{logueados[i]}}</p>
+        <p class="logged_user">{{logueados[i]}}</p>
         {% endfor %}
       </div>
 
-      <a class="logout" href="/logout">Cerrar sesion.</a>
+      <center><a class="logout" href="/logout">Cerrar sesion</a></center>
 
     </div>
   </div>
   <div class="row">
-    <div class="col-8 input_message">
+    <div class="col-10 input_message">
       <form action="" method="POST">
         <input type="text" class="message" placeholder="Escribe un Mensaje">
         <input type="submit" class="send_button">
