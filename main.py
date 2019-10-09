@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_socketio import SocketIO
 from db import *
-import smtplib, re, hashlib
+import smtplib, re, hashlib, random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'UBH6sOYUiF'
@@ -42,7 +42,7 @@ def login():
         return render_template('login.html')
     else:
         #extract data from the form
-        user = request.form['user'] 
+        mail = request.form['mail'] 
 
         password = request.form['password']
         password = to_hash(password) #makes hash of password
@@ -51,15 +51,24 @@ def login():
             print("user loggeed")
             return redirect('/')
 
-        if check_data(user, password) == True: #if data is correct
-            session['username'] = user #saves the name of the user in the session
-            
-            logueados.append(user) #adds user to list of users connected
+
+        code = check_data(user, password)
+        if not x == False: #if data is correct
+
+            code = random.randint(11111,99999)
+            send_mail(mail,code=code)
+            session['code'] = code
+
+            return render_template('login.html', code=code)
+
+            session['username'] = user
+            logueados.append(user)
             print("Los usuarios son:",logueados)
+
 
             socketio.emit('users', logueados) #sends users connected to client
 
-            return redirect('/') #redirect to home page
+            return redirect('/') 
         else:
             return render_template('login.html', error='Datos incorrectos!')        
 
@@ -72,15 +81,24 @@ def registro():
         email = request.form['email']
         name = request.form['name']
         user = request.form['user'] 
-        
         password = request.form['password']
+        
+        try:
+            code = request.form['code']
+        except:
+            code = "off"
+        
+
+        if not password == request.form['password2']:
+            return render_template('register.html', error='Las contraseñas no son iguales!')
+
         password = to_hash(password) #makes hash of password
 
         if email=="" or name=="" or user=="" or password=="": #if there is empty fields
             return render_template('register.html', error='Faltan datos!') 
         elif check_email(email) == False: #if the mail is invalid
             return render_template('register.html', error='Email invalido!') 
-        elif save_data(email,name,user,password) == False: #if the user is already register
+        elif save_data(email,name,user,password,code) == False: #if the user is already register
             return render_template('register.html', error='Datos ya registrados!') 
         else: 
             send_mail(email,user)
@@ -125,15 +143,21 @@ def to_hash(password):
 
 
 
-def send_mail(mail,user):
+def send_mail(mail, code=None):
     server = smtplib.SMTP('smtp.gmail.com',587)
     server.starttls() #start server
     server.login("WasserSoft@gmail.com","huerbook") #login
-    msg= """From: WasserSoft
-    To: {}
-    Subject: Registro Exitoso!
-    Gracias por registrarse en nuestra plataforma!
-    """.format(user)
+    
+    if not code:
+        msg= """From: WasserSoft
+        Subject: Registro Exitoso!
+        Gracias por registrarse en nuestra plataforma!
+        """
+    else:
+        msg= """From: WasserSoft
+        Subject: Codigo de verificacion!.
+        Su codigo de verificacion es {}
+        """.format(code)
     server.sendmail("WasserSoft@gmail.com",mail,msg) 
 
 

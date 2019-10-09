@@ -4,10 +4,10 @@
 <head>
   <title>Huerbook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <meta charset="UTF-8">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -35,13 +35,13 @@
         {% endfor %}
       </div>
 
-      <center><a class="logout" href="/logout">Cerrar sesion</a></center>
+      <a class="logout" href="/logout">Cerrar sesion</a>
 
     </div>
   </div>
   <div class="row">
     <div class="col-10 input_message">
-      <form action="" method="POST">
+      <form method="POST">
         <input type="text" class="message" placeholder="Escribe un Mensaje">
         <input type="submit" class="send_button">
       </form>
@@ -51,7 +51,7 @@
 
 
 
-  <script type="text/javascript">
+  <script>
     var nombre = '{{username}}'
   </script>
 
