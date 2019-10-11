@@ -14,9 +14,9 @@ def home():
         
         #when the cliente requests the page get the messages
         users, messages = get_messages()
-       
-        return render_template('index.html', username=session['username'], messages=messages, users=users, logueados=logueados)
-    else: #if not makes them logged in 
+
+        return render_template('index.html', username=session['display_name'], messages=messages, users=users, logueados=logueados)
+    else: 
         return redirect('/login')
 
 def recived_message(methods=['GET','POST']):
@@ -35,42 +35,63 @@ def handle_event(json, methods=['GET','POST']):
 
 
 
-
 @app.route('/login', methods=['GET','POST'])
 def login():
     if request.method == 'GET': 
         return render_template('login.html')
     else:
         #extract data from the form
-        mail = request.form['mail'] 
+        user = request.form['user'] 
+        session['username'] = user
 
         password = request.form['password']
         password = to_hash(password) #makes hash of password
 
-        if user in logueados: #if user is already logged
+        
+        if get_nick(user) in logueados: #if user is already logged
             print("user loggeed")
             return redirect('/')
 
 
-        code = check_data(user, password)
-        if not x == False: #if data is correct
+        result = check_data(user, password) 
+        if not result == False: #if data is correct 
 
-            code = random.randint(11111,99999)
-            send_mail(mail,code=code)
-            session['code'] = code
+            if result == "on": #if users wants 2factor
+                code = random.randint(11111,99999)
+                send_mail(user,code=code)
+                session['code'] = code
 
-            return render_template('login.html', code=code)
+                return redirect('/autenticate')
+            else:
 
-            session['username'] = user
-            logueados.append(user)
-            print("Los usuarios son:",logueados)
+                session['display_name'] = get_nick(session['username'])
+                
 
-
-            socketio.emit('users', logueados) #sends users connected to client
-
-            return redirect('/') 
+                logueados.append(session['display_name'])
+                print("Los usuarios son:",logueados)
+                socketio.emit('users', logueados) #sends users connected to client
+                return redirect('/') 
         else:
             return render_template('login.html', error='Datos incorrectos!')        
+
+@app.route('/autenticate', methods=['GET','POST'])
+def autenticate():
+    if request.method == 'GET':
+        return render_template('autenticate.html')
+    else:
+        recived_code = request.form['code']
+        
+        if session['code'] == int(recived_code):
+            
+            session['display_name'] = get_nick(session['username'])
+            user = session['username'] 
+            logueados.append(session['display_name'])
+            print("Los usuarios son:",logueados)
+
+            socketio.emit('users', logueados) #sends users connected to client
+            return redirect('/') 
+        else:
+            return render_template('autenticate.html', error="Codigo Incorrecto!")
 
 
 @app.route('/registro', methods=['GET','POST'])
@@ -155,7 +176,7 @@ def send_mail(mail, code=None):
         """
     else:
         msg= """From: WasserSoft
-        Subject: Codigo de verificacion!.
+        
         Su codigo de verificacion es {}
         """.format(code)
     server.sendmail("WasserSoft@gmail.com",mail,msg) 
@@ -172,6 +193,7 @@ def check_email(mail):
         return False  
 
 if __name__ == '__main__':
+   
     logueados = []
     create_table()
     socketio.run(app, debug=True)

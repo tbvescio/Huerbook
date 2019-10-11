@@ -28,15 +28,15 @@ def save_data(email,name,username,password,code):
 def check_data(email,password):
 	con = sqlite3.connect('users.db', check_same_thread=False)
 	elidart = con.cursor()
-	query = f"select * from users where user = '{email}' and password = '{password}'"
+	query = f"select * from users where email = '{email}' and password = '{password}'"
 	elidart.execute(query)
-	result = elidart.fetchall() #muestra resultados como lista
+	result = elidart.fetchone() #muestra resultados como lista
 	con.commit()
 	con.close()
 	if result == []: #si no hay querys con esos parametros
 		return False
 	else:
-		return result[5]
+		return result[5] #returns state of 2factor auth
 
 
 def get_messages():
@@ -62,7 +62,11 @@ def save_messages(user, msg): #guarda los mensajes en la tabla
 	con.close()
 	return
 
-
+def get_nick(email):
+	con = sqlite3.connect('users.db', check_same_thread=False)
+	elidart = con.cursor()	
+	query = elidart.execute(f"SELECT user FROM users where email = '{email}'").fetchone() #obtiene todos los registros
+	return query[0]
 
 
 def check_old_pass(old_pass,email):
