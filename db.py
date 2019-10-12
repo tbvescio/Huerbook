@@ -1,7 +1,5 @@
 import sqlite3
 
-
-
 def create_table():
 	con = sqlite3.connect('users.db', check_same_thread=False)
 	elidart = con.cursor()
@@ -28,7 +26,7 @@ def save_data(email,name,username,password,code):
 def check_data(email,password):
 	con = sqlite3.connect('users.db', check_same_thread=False)
 	elidart = con.cursor()
-	query = f"select * from users where email = '{email}' and password = '{password}'"
+	query = f"select * from users where user = '{email}' and password = '{password}'"
 	elidart.execute(query)
 	result = elidart.fetchone() #muestra resultados como lista
 	con.commit()
@@ -62,10 +60,10 @@ def save_messages(user, msg): #guarda los mensajes en la tabla
 	con.close()
 	return
 
-def get_nick(email):
+def get_mail(user):
 	con = sqlite3.connect('users.db', check_same_thread=False)
 	elidart = con.cursor()	
-	query = elidart.execute(f"SELECT user FROM users where email = '{email}'").fetchone() #obtiene todos los registros
+	query = elidart.execute(f"SELECT email FROM users where user = '{user}'").fetchone() #obtiene todos los registros
 	return query[0]
 
 

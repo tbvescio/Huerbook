@@ -7,7 +7,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'UBH6sOYUiF'
 socketio = SocketIO(app) #capsule flask app in socket
 
-
 @app.route('/' ,methods=['GET','POST'])
 def home():
     if 'username' in session: #if there is an user logged in 
@@ -15,7 +14,7 @@ def home():
         #when the cliente requests the page get the messages
         users, messages = get_messages()
 
-        return render_template('index.html', username=session['display_name'], messages=messages, users=users, logueados=logueados)
+        return render_template('index.html', username=session['username'], messages=messages, users=users, logueados=logueados)
     else: 
         return redirect('/login')
 
@@ -42,52 +41,44 @@ def login():
     else:
         #extract data from the form
         user = request.form['user'] 
-        session['username'] = user
-
+        
         password = request.form['password']
         password = to_hash(password) #makes hash of password
 
-        
-        if get_nick(user) in logueados: #if user is already logged
+        if user in logueados: #if user is already logged
             print("user loggeed")
             return redirect('/')
-
 
         result = check_data(user, password) 
         if not result == False: #if data is correct 
 
             if result == "on": #if users wants 2factor
                 code = random.randint(11111,99999)
-                send_mail(user,code=code)
+                email = get_mail(user)
+                send_mail(email,code=code)
                 session['code'] = code
 
                 return redirect('/autenticate')
             else:
-
-                session['display_name'] = get_nick(session['username'])
-                
-
-                logueados.append(session['display_name'])
+                session['username'] = user
+                logueados.append(user)
                 print("Los usuarios son:",logueados)
                 socketio.emit('users', logueados) #sends users connected to client
-                return redirect('/') 
+                return redirect('/login/autenticate') 
         else:
             return render_template('login.html', error='Datos incorrectos!')        
 
-@app.route('/autenticate', methods=['GET','POST'])
+@app.route('/login/autenticate', methods=['GET','POST'])
 def autenticate():
     if request.method == 'GET':
         return render_template('autenticate.html')
     else:
         recived_code = request.form['code']
         
-        if session['code'] == int(recived_code):
-            
-            session['display_name'] = get_nick(session['username'])
-            user = session['username'] 
-            logueados.append(session['display_name'])
+        if session['code'] == int(recived_code): #if the introduced code is right
+            session['username'] = user
+            logueados.append(user)
             print("Los usuarios son:",logueados)
-
             socketio.emit('users', logueados) #sends users connected to client
             return redirect('/') 
         else:
