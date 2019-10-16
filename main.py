@@ -53,12 +53,13 @@ def login():
         if not result == False: #if data is correct 
 
             if result == "on": #if users wants 2factor
+                session['temp_user'] = user
                 code = random.randint(11111,99999)
                 email = get_mail(user)
                 send_mail(email,code=code)
                 session['code'] = code
 
-                return redirect('/autenticate')
+                return redirect('/login/autenticate')
             else:
                 session['username'] = user
                 logueados.append(user)
@@ -76,8 +77,8 @@ def autenticate():
         recived_code = request.form['code']
         
         if session['code'] == int(recived_code): #if the introduced code is right
-            session['username'] = user
-            logueados.append(user)
+            session['username'] = session['temp_user']
+            logueados.append(session['username'])
             print("Los usuarios son:",logueados)
             socketio.emit('users', logueados) #sends users connected to client
             return redirect('/') 

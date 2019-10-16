@@ -31,7 +31,7 @@ def check_data(email,password):
 	result = elidart.fetchone() #muestra resultados como lista
 	con.commit()
 	con.close()
-	if result == []: #si no hay querys con esos parametros
+	if result == [] or result == None: #si no hay querys con esos parametros
 		return False
 	else:
 		return result[5] #returns state of 2factor auth
