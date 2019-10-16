@@ -53,8 +53,8 @@
     
 }
 
-.asd{
-    top:378px;
+.back{
+    top:26em;
     left:105px;
     position: absolute;
 }
@@ -88,7 +88,7 @@
 
 
 
-.login, .register, .reset, .autenticate{
+.login, .reset{
     background-color:white;
     color: black;
     width: 20em;
@@ -110,7 +110,7 @@
 }
 .login input[type=submit]{
     width: 13em;
-    height: 2em;
+    height: 3em;
     background-color: #fc03df;
     color: white;
     border: 0;
@@ -125,6 +125,7 @@
 }
 
 
+
 /*   REGISTRO      */
 
 .register input{
@@ -133,7 +134,7 @@
 }
 .register input[type=submit]{
     width: 13em;
-    height: 2em;
+    height: 3em;
     background-color: #fc03df;
     color: white;
     border: 0;
@@ -142,10 +143,31 @@
     margin-bottom: 100px;
 }
 
+.register input[type=checkbox]{
+    margin: 0px;
+}
+
+.register label{
+    font-size: 12px;
+}
+
 
 .register a{
     text-decoration: none;
     color: #bdbdbd;
+}
+
+.register{
+    background-color:white;
+    color: black;
+    width: 20em;
+    height: 30em;
+    padding-top: 0.5em;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    top: 20%;
+    left: 40%;
 }
 
 /* RESET */
@@ -155,7 +177,7 @@
 }
 .reset input[type=submit]{
     width: 13em;
-    height: 2em;
+    height: 3em;
     background-color: #fc03df;
     color: white;
     border: 0;
@@ -176,15 +198,27 @@
 
 /*      AUTENTICATE      */
 
+.autenticate{
+    background-color:white;
+    color: black;
+    width: 20em;
+    height: 14em;
+    padding-top: 0.5em;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+}
+
 
 .autenticate input{
-    margin-bottom: 13em;
-    margin-top: 3em;
     height: 2em;
+    margin-bottom: 2em;
 }
 .autenticate input[type=submit]{
     width: 13em;
-    height: 2em;
+    height: 3em;
     background-color: #fc03df;
     color: white;
     border: 0;

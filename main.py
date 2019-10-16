@@ -65,7 +65,7 @@ def login():
                 logueados.append(user)
                 print("Los usuarios son:",logueados)
                 socketio.emit('users', logueados) #sends users connected to client
-                return redirect('/login/autenticate') 
+                return redirect('/login') 
         else:
             return render_template('login.html', error='Datos incorrectos!')        
 
@@ -76,7 +76,9 @@ def autenticate():
     else:
         recived_code = request.form['code']
         
-        if session['code'] == int(recived_code): #if the introduced code is right
+        if recived_code == "":
+            return render_template('autenticate.html', error="Ingrese un codigo!")
+        elif session['code'] == int(recived_code): #if the introduced code is right
             session['username'] = session['temp_user']
             logueados.append(session['username'])
             print("Los usuarios son:",logueados)

@@ -22,7 +22,10 @@
     </div>
 
 
-    <h1>{{error}}</h1>
+    {% if error %}
+                <script> alert('{{error}}');</script>
+
+            {% endif %}
 </body>
 
 </html>

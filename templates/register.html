@@ -11,32 +11,28 @@
 <body id="register">
     
     <div class="register">
-        <h1>Registro:</h1>
+        <h1>Registro</h1>
         <form action="/registro" method="POST">
             <div>
                 <input type="text" name="email" placeholder="Email">
                 <input type="text" name="name" placeholder="Nombre">
                 <input type="text" name="user" placeholder="Usuario">
                 <input type="password" name="password" placeholder="Contraseña">
-                <input type="password" name="password2" placeholder="Confirmar contraseña">
-                <input type="checkbox" name="code">
+                <input id="confirm" type="password" name="password2" placeholder="Confirmar contraseña"><br>
+                <label><input type="checkbox" name="code">¿Desea verificacion de dos pasos?</label> 
             </div>
             <input type="submit" value="Aceptar"><br>
-            <a href="/login" class="asd"> Volver al login</a>
+            <a href="/login" class="back"> Volver al login</a>
         </form>
-    
-        <h1>{{error}}</h1>
+            
 
-        {% if code %}
-            <script>
-                var x = alert("Ingrese su codigo: ");
 
-            </script>
+            {% if error %}
+                <script> alert('{{error}}');</script>
 
-        {% endif %}
+            {% endif %}
+        
     </div>
     
-
-
 </body>
 </html>
