@@ -1,5 +1,5 @@
 /* BODY FOR LOGIN, REGISTER AND RESET*/
-#login, #register, #reset{
+#login, #register, #reset, #autenticate{
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(190,18,149,1) 0%, rgba(0,74,255,1) 99%);
     font-family: 'Roboto', sans-serif;
@@ -88,7 +88,7 @@
 
 
 
-.login, .register, .reset{
+.login, .register, .reset, .autenticate{
     background-color:white;
     color: black;
     width: 20em;
@@ -171,6 +171,26 @@
     left:61px;
     position: absolute;
 
+}
+
+
+/*      AUTENTICATE      */
+
+
+.autenticate input{
+    margin-bottom: 13em;
+    margin-top: 3em;
+    height: 2em;
+}
+.autenticate input[type=submit]{
+    width: 13em;
+    height: 2em;
+    background-color: #fc03df;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 75px;
 }
 
     
