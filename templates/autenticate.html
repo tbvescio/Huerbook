@@ -16,16 +16,15 @@
     <div class="autenticate">
         <h1>Autenticate</h1>
         <form action="/login/autenticate" method="POST">
-            <input type="text" name="code" placeholder="12345"><br>
+            <input type="text" name="code" placeholder="Verifique su mail"><br>
             <input type="submit" value="Aceptar">
         </form>
     </div>
 
 
     {% if error %}
-                <script> alert('{{error}}');</script>
-
-            {% endif %}
+        <script> alert('{{error}}');</script>
+    {% endif %}
 </body>
 
 </html>

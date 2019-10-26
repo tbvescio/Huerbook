@@ -1,95 +1,121 @@
 /* BODY FOR LOGIN, REGISTER AND RESET*/
-#login, #register, #reset, #autenticate{
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(190,18,149,1) 0%, rgba(0,74,255,1) 99%);
+
+#login,
+#register,
+#reset,
+#autenticate {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(190, 18, 149, 1) 0%, rgba(0, 74, 255, 1) 99%);
     font-family: 'Roboto', sans-serif;
 }
 
 
 /*      INDEX       */
 
-#indexbody{
-    background-color: rgb(26, 26, 26);
+#indexbody {
+    background: rgb(81, 104, 255);
+    background: linear-gradient(90deg, rgba(81, 104, 255, 1) 0%, rgba(55, 55, 255, 1) 46%, rgba(0, 76, 255, 1) 100%);
     color: white;
     font-family: 'Roboto', sans-serif;
     overflow: hidden;
     height: 100%;
+    margin: 20px;
 }
 
-#usuarioscon{
-    font-size: 30px;
+
+/*      Bandeja de mensajes       */
+
+.mensajes {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 15px;
+    font-size: 1em;
+    word-wrap: break-word;
+    overflow-y: scroll;
+    height: 90vh;
+    padding: 20px;
+}
+
+.message {
+    display: block;
+    background-color: lightgreen;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    color: black;
+    width: 30%;
+}
+
+
+/*      Input       */
+
+.input_message {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 15px;
+}
+
+.message_i {
+    border-radius: 12px;
+    width: 90%;
+    margin-left: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.send_button {
+    padding: 10px;
+    width: 8%;
+    margin-left: 15px;
+    border-radius: 10px;
+    background-color: rgb(80, 253, 80);
+}
+
+
+/*      Usuarios Logueados       */
+
+.logueados {
+    background-color: rgba(0, 0, 0, .7);
+    color: white;
+    height: 90vh;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.usuarios {
+    overflow-y: auto;
+    word-wrap: break-word;
+    height: 73vh;
+}
+
+#usuarioscon {
+    font-size: 50px;
     text-align: center;
 }
 
-.logged_user{
-    text-align: center; 
-    background-color: #23272a;
-
-}
-.logged_user:hover{
-    background-color: #2c2f33;
+.logged_user {
+    text-align: center;
+    background-color: rgb(0, 0, 151);
+    font-size: 40px;
 }
 
-.mensajes{
-    background-color: #2d2d33; 
-    border-radius: 9px;
-    -moz-border-radius: 9px;
-    -webkit-border-radius: 9px;
-    font-size: 17px;
-    word-wrap: break-word;
-    overflow-y:scroll;
-    height:90vh;
-
+.logged_user:hover {
+    background-color: rgb(0, 0, 189);
 }
 
-.linea{
-    border-color: #c7c7c7;
-}
-
-  
-.input_message{
-    background-color: #34343b;
-    color: white;
-    
-}
-
-.back{
-    top:26em;
-    left:105px;
-    position: absolute;
-}
-
-.usuarios{
-    overflow-y:auto;
-    word-wrap: break-word;
-    height:73vh;
-}
-
-.logueados{
-    background-color:#23272a;
-    color:white;
-    height:90vh;
-}
-
-.message{
-    padding-left: 10px;
-    border-radius:12px;
-    width: 93%;
-}
-.send_button{
-    width:73px;
-    height: 33px;
-    margin-top: 5px;
-}
-.logout{
-    text-decoration: none;
-    color: #7289da;
+.logout {
+    background-color: red;
+    border-style: none;
+    width: 98%;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 
+/*    LOGIN     */
 
-.login, .reset{
-    background-color:white;
+.login,
+.reset {
+    background-color: white;
     color: black;
     width: 20em;
     height: 25em;
@@ -99,16 +125,14 @@
     position: absolute;
     top: 20%;
     left: 40%;
-    
 }
 
-
-/*    LOGIN     */
-.login input{
+.login input {
     margin: 1em;
     height: 2em;
 }
-.login input[type=submit]{
+
+.login input[type=submit] {
     width: 13em;
     height: 3em;
     background-color: #fc03df;
@@ -118,21 +142,21 @@
     margin-top: 20px;
     margin-bottom: 75px;
 }
-.login a{
+
+.login a {
     text-decoration: none;
     color: #bdbdbd;
-
 }
-
 
 
 /*   REGISTRO      */
 
-.register input{
+.register input {
     margin: 1em;
     height: 2em;
 }
-.register input[type=submit]{
+
+.register input[type=submit] {
     width: 13em;
     height: 3em;
     background-color: #fc03df;
@@ -143,22 +167,21 @@
     margin-bottom: 100px;
 }
 
-.register input[type=checkbox]{
+.register input[type=checkbox] {
     margin: 0px;
 }
 
-.register label{
+.register label {
     font-size: 12px;
 }
 
-
-.register a{
+.register a {
     text-decoration: none;
     color: #bdbdbd;
 }
 
-.register{
-    background-color:white;
+.register {
+    background-color: white;
     color: black;
     width: 20em;
     height: 30em;
@@ -170,12 +193,15 @@
     left: 40%;
 }
 
+
 /* RESET */
-.reset input{
+
+.reset input {
     margin: 1em;
     height: 2em;
 }
-.reset input[type=submit]{
+
+.reset input[type=submit] {
     width: 13em;
     height: 3em;
     background-color: #fc03df;
@@ -185,21 +211,21 @@
     margin-top: 20px;
     margin-bottom: 100px;
 }
-.reset a{
+
+.reset a {
     text-decoration: none;
     color: #bdbdbd;
     margin: 50px;
-    top:320px;
-    left:61px;
+    top: 320px;
+    left: 61px;
     position: absolute;
-
 }
 
 
 /*      AUTENTICATE      */
 
-.autenticate{
-    background-color:white;
+.autenticate {
+    background-color: white;
     color: black;
     width: 20em;
     height: 14em;
@@ -211,12 +237,12 @@
     left: 40%;
 }
 
-
-.autenticate input{
+.autenticate input {
     height: 2em;
     margin-bottom: 2em;
 }
-.autenticate input[type=submit]{
+
+.autenticate input[type=submit] {
     width: 13em;
     height: 3em;
     background-color: #fc03df;
@@ -226,5 +252,3 @@
     margin-top: 20px;
     margin-bottom: 75px;
 }
-
-    

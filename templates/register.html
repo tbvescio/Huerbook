@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
+
 <body id="register">
-    
+
     <div class="register">
         <h1>Registro</h1>
         <form action="/registro" method="POST">
@@ -19,20 +21,21 @@
                 <input type="text" name="user" placeholder="Usuario">
                 <input type="password" name="password" placeholder="Contraseña">
                 <input id="confirm" type="password" name="password2" placeholder="Confirmar contraseña"><br>
-                <label><input type="checkbox" name="code">¿Desea verificacion de dos pasos?</label> 
+                <label><input type="checkbox" name="code">¿Desea verificacion de dos pasos?</label>
             </div>
             <input type="submit" value="Aceptar"><br>
             <a href="/login" class="back"> Volver al login</a>
         </form>
-            
 
 
-            {% if error %}
-                <script> alert('{{error}}');</script>
 
-            {% endif %}
-        
+        {% if error %}
+        <script> alert('{{error}}');</script>
+
+        {% endif %}
+
     </div>
-    
+
 </body>
+
 </html>

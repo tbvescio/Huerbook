@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,21 +14,22 @@
 
     <div class="login">
         <h1>Login</h1>
-        <form action="/login" method="POST" >
-            
+        <form action="/login" method="POST">
+
             <input type="text" name="user" placeholder="Usuario"><br>
             <input type="password" name="password" placeholder="Contraseña"><br>
             <input type="submit" value="Aceptar" id="submit"><br>
             <a href="/reset">Cambiar contraseña</a>
         </form><br>
-        
-        <a href="/registro">Registrarse</a>
-        {% if error %}
-                <script> alert('{{error}}');</script>
 
-            {% endif %}
+        <a href="/registro">Registrarse</a>
+
+        {% if error %}
+            <script> alert('{{error}}');</script>
+        {% endif %}
 
     </div>
-    
+
 </body>
+
 </html>

@@ -20,14 +20,13 @@
 
     <div class="col-10 mensajes">
       {%for i in range(messages|length)%}
-      <hr class="linea">
-      <p><b>{{messages[i]}}:</b><br> {{users[i]}}</p>
+      <p class="message"><b>{{messages[i]}}:</b><br> {{users[i]}}</p>
       {% endfor %}
     </div>
 
     <div class="logueados col-2">
 
-      <h1 id="usuarioscon">Usuarios conectados</h1>
+      <h1 id="usuarioscon">Usuarios</h1>
 
       <div class="usuarios">
         {%for i in range(logueados|length)%}
@@ -35,20 +34,18 @@
         {% endfor %}
       </div>
 
-      <a class="logout" href="/logout">Cerrar sesion</a>
+      <a href="/logout"><button class="logout">Cerrar Sesion</button></a>
+
 
     </div>
   </div>
-  <div class="row">
-    <div class="col-10 input_message">
-      <form method="POST">
-        <input type="text" class="message" placeholder="Escribe un Mensaje">
-        <input type="submit" class="send_button">
-      </form>
-    </div>
+  <div class="col-10 input_message">
+    <form method="POST">
+      <input type="text" class="message_i" placeholder="Escribe un Mensaje">
+      <input type="submit" class="send_button">
+    </form>
   </div>
-
-
+  </div>
 
 
   <script>
