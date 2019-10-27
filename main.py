@@ -65,7 +65,7 @@ def login():
                 logueados.append(user)
                 print("Los usuarios son:",logueados)
                 socketio.emit('users', logueados) #sends users connected to client
-                return redirect('/login') 
+                return redirect('/') 
         else:
             return render_template('login.html', error='Datos incorrectos!')        
 

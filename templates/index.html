@@ -22,6 +22,9 @@
       {%for i in range(messages|length)%}
       <p class="message"><b>{{messages[i]}}:</b><br> {{users[i]}}</p>
       {% endfor %}
+
+
+
     </div>
 
     <div class="logueados col-2">
@@ -39,12 +42,12 @@
 
     </div>
   </div>
-  <div class="col-10 input_message">
+
+  <div class="col-12 input_message">
     <form method="POST">
       <input type="text" class="message_i" placeholder="Escribe un Mensaje">
-      <input type="submit" class="send_button">
+      <input type="submit" class="send_button" >
     </form>
-  </div>
   </div>
 
 
