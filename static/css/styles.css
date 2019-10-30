@@ -62,13 +62,12 @@
     border-radius: 12px;
     width: 75%;
     margin-left: 5px;
-    padding: 10px;
+    padding: 5px;
 
 }
 
 .send_button {
-    padding: 10px;
-    width: 8%;
+    padding: 10px; 
     margin-left: 15px;
     background-color: rgba(255, 255, 255, 0.1);
     border: .5px solid white;

@@ -18,16 +18,13 @@
 <body id="indexbody">
   <div class="row maindiv">
 
-    <div class="col-10 mensajes">
+    <div class="col-md-10 col-12 mensajes">
       {%for i in range(messages|length)%}
       <p class="message"><b>{{messages[i]}}:</b><br> {{users[i]}}</p>
       {% endfor %}
-
-
-
     </div>
 
-    <div class="logueados col-2">
+    <div class="logueados d-none d-md-block">
 
       <h1 id="usuarioscon">Usuarios</h1>
 
@@ -38,15 +35,13 @@
       </div>
 
       <a href="/logout"><button class="logout">Cerrar Sesion</button></a>
-
-
     </div>
   </div>
 
   <div class="col-12 input_message">
     <form method="POST">
-      <input type="text" class="message_i" placeholder="Escribe un Mensaje">
-      <input type="submit" class="send_button" >
+      <input type="text" class="message_i " placeholder="Escribe un Mensaje">
+      <input type="submit" class="send_button d.flex" >
     </form>
   </div>
 
